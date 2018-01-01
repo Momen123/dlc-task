@@ -38,7 +38,22 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 <body>
 	<div id="container">
 		<div id="header">
-			<h1><?php echo $this->Html->link($cakeDescription, 'https://cakephp.org'); ?></h1>
+			<h1><?php //echo $this->Html->link($cakeDescription, 'https://cakephp.org'); ?></h1>
+
+
+		    <?php
+		    if (AuthComponent::user()):
+              echo $this->Html->link('Log out', array('controller' => 'users', 'action' => 'logout'));
+            else:
+              echo $this->Html->link('Log in', array('controller' => 'users', 'action' => 'login'));
+            ?>
+              &nbsp;
+            <?php
+              echo $this->Html->link('Register', array('controller' => 'users', 'action' => 'add'));
+            endif;
+            ?>
+
+
 		</div>
 		<div id="content">
 
@@ -47,17 +62,17 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			<?php echo $this->fetch('content'); ?>
 		</div>
 		<div id="footer">
-			<?php echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
-					'https://cakephp.org/',
-					array('target' => '_blank', 'escape' => false, 'id' => 'cake-powered')
-				);
+			<?php //echo $this->Html->link(
+				//	$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
+				//	'https://cakephp.org/',
+				//	array('target' => '_blank', 'escape' => false, 'id' => 'cake-powered')
+				//);
 			?>
 			<p>
-				<?php echo $cakeVersion; ?>
+				<?php //echo $cakeVersion; ?>
 			</p>
 		</div>
 	</div>
-	<?php echo $this->element('sql_dump'); ?>
+	<?php //echo $this->element('sql_dump'); ?>
 </body>
 </html>
